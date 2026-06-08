@@ -1,5 +1,5 @@
-const DIRECTUS_URL = "https://sandbox.directus.com";
-const TOKEN = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImE2Mzg3MjE4LWQyNTMtNDdlMi04ODBmLWQ0NTg1YmEzOWQ1NyIsInJvbGUiOiIzNTdhYTE3Yi05ODA4LTQ0YzItYTQyMy01NDU2MThiNWY2NjIiLCJhcHBfYWNjZXNzIjp0cnVlLCJhZG1pbl9hY2Nlc3MiOnRydWUsInNlc3Npb24iOiJuYnE4MFFGdG9lZklTM2ZFQ0s1cWRnMnQydUF1bF9mWWVHRmVBMmpKb283MGV4VlIyR21kZHRFWnBlVmg5QUtUIiwiaWF0IjoxNzgwOTM2MDA4LCJleHAiOjE3ODEwMjI0MDgsImlzcyI6ImRpcmVjdHVzIn0.Bremib9pj_3cO3oWWbOf5S3SGB_qQY_Tpv09jRnJrhE";
+const DIRECTUS_URL = "http://194.226.187.67:8055";
+const TOKEN = "MizgrStaticAdminToken2026";
 
 async function request(endpoint: string, options: RequestInit = {}) {
   const url = `${DIRECTUS_URL}${endpoint}`;

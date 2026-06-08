@@ -66,7 +66,7 @@ export default function App() {
   useEffect(() => {
     async function loadDirectusData() {
       try {
-        const projectsRes = await fetch("https://sandbox.directus.com/items/projects?sort=sort");
+        const projectsRes = await fetch("http://194.226.187.67:8055/items/projects?sort=sort");
         if (projectsRes.ok) {
           const { data } = await projectsRes.json();
           if (Array.isArray(data) && data.length > 0) {
@@ -78,7 +78,7 @@ export default function App() {
       }
 
       try {
-        const skillsRes = await fetch("https://sandbox.directus.com/items/skills?sort=sort");
+        const skillsRes = await fetch("http://194.226.187.67:8055/items/skills?sort=sort");
         if (skillsRes.ok) {
           const { data } = await skillsRes.json();
           if (Array.isArray(data) && data.length > 0) {
@@ -90,7 +90,7 @@ export default function App() {
       }
 
       try {
-        const globalsRes = await fetch("https://sandbox.directus.com/items/globals");
+        const globalsRes = await fetch("http://194.226.187.67:8055/items/globals");
         if (globalsRes.ok) {
           const { data } = await globalsRes.json();
           if (data) {
@@ -219,7 +219,7 @@ export default function App() {
         style={{ 
           backgroundImage: `url('${
             globals.background_photo 
-              ? `https://sandbox.directus.com/assets/${globals.background_photo}` 
+              ? `http://194.226.187.67:8055/assets/${globals.background_photo}` 
               : "https://images.unsplash.com/photo-1549488344-1f9b8d2bd1f3?auto=format&fit=crop&w=2400&q=80"
           }')` 
         }}
@@ -289,7 +289,7 @@ export default function App() {
                 <img 
                   src={
                     globals.profile_photo 
-                      ? `https://sandbox.directus.com/assets/${globals.profile_photo}` 
+                      ? `http://194.226.187.67:8055/assets/${globals.profile_photo}` 
                       : "https://images.unsplash.com/photo-1549488344-1f9b8d2bd1f3?auto=format&fit=crop&w=1200&q=80"
                   } 
                   alt="Mizgr Monumental Brutalist Concrete Structural Slabs" 
