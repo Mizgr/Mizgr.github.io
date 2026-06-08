@@ -58,6 +58,10 @@ export default function App() {
   // Directus Dynamic Data States
   const [projectsList, setProjectsList] = useState<Project[]>(PROJECTS);
   const [skillsList, setSkillsList] = useState<SkillCategory[]>(SKILLS);
+  const [globals, setGlobals] = useState<{
+    profile_photo?: string | null;
+    background_photo?: string | null;
+  }>({});
 
   useEffect(() => {
     async function loadDirectusData() {
@@ -83,6 +87,18 @@ export default function App() {
         }
       } catch (err) {
         console.error("Failed to load skills from Directus:", err);
+      }
+
+      try {
+        const globalsRes = await fetch("https://sandbox.directus.com/items/globals");
+        if (globalsRes.ok) {
+          const { data } = await globalsRes.json();
+          if (data) {
+            setGlobals(data);
+          }
+        }
+      } catch (err) {
+        console.error("Failed to load globals from Directus:", err);
       }
     }
 
@@ -200,7 +216,13 @@ export default function App() {
       {/* MONUMENTAL MINIMAL FIXED ARCHITECTURAL BACKGROUND PHOTO */}
       <div 
         className="fixed inset-0 z-0 bg-cover bg-center transition-all duration-1000 pointer-events-none opacity-[0.14] grayscale mix-blend-lighten"
-        style={{ backgroundImage: "url('https://images.unsplash.com/photo-1549488344-1f9b8d2bd1f3?auto=format&fit=crop&w=2400&q=80')" }}
+        style={{ 
+          backgroundImage: `url('${
+            globals.background_photo 
+              ? `https://sandbox.directus.com/assets/${globals.background_photo}` 
+              : "https://images.unsplash.com/photo-1549488344-1f9b8d2bd1f3?auto=format&fit=crop&w=2400&q=80"
+          }')` 
+        }}
       />
       
       {/* SOPHISTICATED NO-MOCK SHADOW GRADIENTS */}
@@ -265,7 +287,11 @@ export default function App() {
             <div className="border border-zinc-800 p-3 bg-zinc-950/40 rounded-sm overflow-hidden backdrop-blur-sm shadow-xl">
               <div className="relative group overflow-hidden border border-zinc-800 rounded-sm aspect-[4/5] bg-zinc-950">
                 <img 
-                  src="https://images.unsplash.com/photo-1549488344-1f9b8d2bd1f3?auto=format&fit=crop&w=1200&q=80" 
+                  src={
+                    globals.profile_photo 
+                      ? `https://sandbox.directus.com/assets/${globals.profile_photo}` 
+                      : "https://images.unsplash.com/photo-1549488344-1f9b8d2bd1f3?auto=format&fit=crop&w=1200&q=80"
+                  } 
                   alt="Mizgr Monumental Brutalist Concrete Structural Slabs" 
                   referrerPolicy="no-referrer"
                   className="w-full h-full object-cover grayscale brightness-95 contrast-125 transition-transform duration-700 group-hover:scale-105"
