@@ -235,11 +235,11 @@ export default function App() {
           {/* Logo Brand */}
           <div className="flex items-center gap-3">
             <div className="bg-white text-black p-1 px-3 font-mono font-black text-xs tracking-[0.2em] flex items-center gap-2">
-              <span>MIZGR</span>
+              <span>{globals.title || "MIZGR"}</span>
             </div>
             <span className="hidden sm:inline-block h-4 w-[1px] bg-zinc-800"></span>
             <span className="hidden sm:inline-block text-[10px] text-zinc-500 tracking-wider uppercase font-medium">
-              Backend & Automation Engineering
+              {lang === "en" ? (globals.role_en || "Backend & Automation Engineering") : (globals.role_ru || "Бэкенд-разработка и Автоматизация")}
             </span>
           </div>
 
@@ -325,46 +325,50 @@ export default function App() {
             </div>
             
             <h1 className="text-4xl md:text-5xl lg:text-6xl font-sans font-extrabold tracking-tight text-white leading-tight">
-             MIZG
+             {globals.title || "MIZG"}
             </h1>
 
             <p className="font-mono text-xs md:text-sm text-zinc-400 tracking-wider uppercase font-semibold border-l-2 border-white pl-3.5">
-              {t.role}
+              {lang === "en" ? (globals.role_en || t.role) : (globals.role_ru || t.role)}
             </p>
 
             <p className="text-zinc-300 text-sm md:text-base leading-relaxed font-sans max-w-xl">
-              {t.shortAbout}
+              {lang === "en" ? (globals.about_en || t.shortAbout) : (globals.about_ru || t.shortAbout)}
             </p>
 
             <blockquote className="border-l-4 border-zinc-700 pl-4 py-1.5 text-zinc-400 text-xs italic bg-zinc-950/20 max-w-lg">
-              "{t.quoteText}"
+              "{lang === "en" ? (globals.quote_en || t.quoteText) : (globals.quote_ru || t.quoteText)}"
             </blockquote>
 
             {/* Direct Social Links */}
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 pt-4 max-w-lg">
               
               <a 
-                href="https://t.me/Mizgtelegram" 
+                href={globals.telegram_link || "https://t.me/Mizgtelegram"} 
                 target="_blank" 
                 rel="noreferrer" 
                 className="bg-zinc-950/85 hover:bg-zinc-900 border border-zinc-850 hover:border-zinc-500 p-4 rounded-sm flex items-center justify-between text-zinc-300 hover:text-white transition-all duration-300 group shadow-lg"
               >
                 <div>
                   <span className="block text-[9px] text-zinc-500 font-bold tracking-widest uppercase transition-colors group-hover:text-zinc-400">TELEGRAM CHANNEL</span>
-                  <span className="block text-xs font-bold mt-1">@Mizgtelegram</span>
+                  <span className="block text-xs font-bold mt-1">
+                    {globals.telegram_link ? `@${globals.telegram_link.split("/").pop()}` : "@Mizgtelegram"}
+                  </span>
                 </div>
                 <ArrowUpRight size={16} className="text-zinc-650 group-hover:transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-all text-zinc-500 group-hover:text-white" />
               </a>
 
               <a 
-                href="https://github.com/Mizgr" 
+                href={globals.github_link || "https://github.com/Mizgr"} 
                 target="_blank" 
                 rel="noreferrer" 
                 className="bg-zinc-950/85 hover:bg-zinc-900 border border-zinc-850 hover:border-zinc-500 p-4 rounded-sm flex items-center justify-between text-zinc-300 hover:text-white transition-all duration-300 group shadow-lg"
               >
                 <div>
                   <span className="block text-[9px] text-zinc-500 font-bold tracking-widest uppercase transition-colors group-hover:text-zinc-400">GITHUB CODEBASE</span>
-                  <span className="block text-xs font-bold mt-1">github.com/Mizgr</span>
+                  <span className="block text-xs font-bold mt-1">
+                    {globals.github_link ? globals.github_link.replace("https://", "").replace("http://", "") : "github.com/Mizgr"}
+                  </span>
                 </div>
                 <ArrowUpRight size={16} className="text-zinc-650 group-hover:transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-all text-zinc-500 group-hover:text-white" />
               </a>
@@ -747,7 +751,7 @@ export default function App() {
                 
                 {/* Telegram access channel */}
                 <a 
-                  href="https://t.me/Mizgtelegram"
+                  href={globals.telegram_link || "https://t.me/Mizgtelegram"}
                   target="_blank" 
                   rel="noreferrer"
                   className="flex items-center justify-between p-3.5 bg-[#070709] border border-zinc-900 rounded hover:border-zinc-500 transition-all group shadow"
@@ -764,7 +768,7 @@ export default function App() {
 
                 {/* Github direct */}
                 <a 
-                  href="https://github.com/Mizgr"
+                  href={globals.github_link || "https://github.com/Mizgr"}
                   target="_blank" 
                   rel="noreferrer"
                   className="flex items-center justify-between p-3.5 bg-[#070709] border border-zinc-900 rounded hover:border-zinc-500 transition-all group shadow"
@@ -882,22 +886,22 @@ export default function App() {
           
           <div className="flex flex-col gap-2 max-w-md text-center md:text-left">
             <p className="font-mono text-white font-black text-xs tracking-[0.25em] uppercase">
-              MIZGR PORTFOLIO
+              {globals.title || "MIZGR"} PORTFOLIO
             </p>
             <p className="font-sans text-[10px] text-zinc-500 leading-normal tracking-wide uppercase font-semibold">
-              {t.footerText}
+              {lang === "en" ? (globals.footer_en || t.footerText) : (globals.footer_ru || t.footerText)}
             </p>
           </div>
 
           <div className="flex flex-col items-center md:items-end gap-3 text-[10px] text-zinc-500">
             <div className="flex items-center gap-4 uppercase font-bold tracking-widest font-mono">
-              <a href="https://github.com/Mizgr" target="_blank" rel="noreferrer" className="hover:text-white transition-colors">GITHUB</a>
+              <a href={globals.github_link || "https://github.com/Mizgr"} target="_blank" rel="noreferrer" className="hover:text-white transition-colors">GITHUB</a>
               <span>•</span>
-              <a href="https://t.me/Mizgtelegram" target="_blank" rel="noreferrer" className="hover:text-white transition-colors">TELEGRAM</a>
+              <a href={globals.telegram_link || "https://t.me/Mizgtelegram"} target="_blank" rel="noreferrer" className="hover:text-white transition-colors">TELEGRAM</a>
             </div>
             
             <div className="font-mono text-zinc-700 tracking-wider text-[9px] select-none uppercase font-semibold">
-              STATUS: STABLE_V2.0 // © 2026 MIZGR
+              STATUS: STABLE_V2.0 // © 2026 {globals.title || "MIZGR"}
             </div>
           </div>
 
